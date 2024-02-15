@@ -17,13 +17,13 @@ module.exports = RED => {
   //console.log(`Opening client: http://${host}:${RED.settings.uiPort}/graphql`);
   const apolloLink = createHttpLink({ uri: `http://${host}:${RED.settings.uiPort}/graphql`, fetch: fetch });
 
-  const wsLink = new WebSocketLink({
-    uri: 'ws://localhost:1943/',
-    options: {
-      reconnect: true
-    },
-    webSocketImpl: ws
-  });
+  // const wsLink = new WebSocketLink({
+  //   uri: 'ws://localhost:1943/',
+  //   options: {
+  //     reconnect: true
+  //   },
+  //   webSocketImpl: ws
+  // });
 
   const link = split(
     // split based on operation type
@@ -34,7 +34,7 @@ module.exports = RED => {
         definition.operation === 'subscription'
       );
     },
-    wsLink,
+    // wsLink,
     apolloLink,
   );
 
