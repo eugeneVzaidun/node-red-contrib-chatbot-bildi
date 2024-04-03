@@ -2,7 +2,7 @@ const _ = require('underscore');
 const MessageTemplate = require('../lib/message-template-async');
 const validators = require('../lib/helpers/validators');
 const RegisterType = require('../lib/node-installer');
-const { ChatExpress } = require('bildi-chat-platform');
+const { ChatExpress } = require('chat-platform');
 const {
   isValidMessage,
   getChatId,

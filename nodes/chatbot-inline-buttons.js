@@ -1,6 +1,6 @@
 const MessageTemplate = require('../lib/message-template-async');
 const emoji = require('node-emoji');
-const { ChatExpress } = require('bildi-chat-platform');
+const { ChatExpress } = require('chat-platform');
 
 const RegisterType = require('../lib/node-installer');
 const {

@@ -1,5 +1,5 @@
 const _ = require('underscore');
-const { ChatExpress } = require('bildi-chat-platform');
+const { ChatExpress } = require('chat-platform');
 
 const MessageTemplate = require('../lib/message-template-async');
 const RegisterType = require('../lib/node-installer');

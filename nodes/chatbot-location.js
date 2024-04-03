@@ -1,6 +1,6 @@
 const _ = require('underscore');
 
-const { ChatExpress } = require('bildi-chat-platform');
+const { ChatExpress } = require('chat-platform');
 const RegisterType = require('../lib/node-installer');
 const {
   isValidMessage,

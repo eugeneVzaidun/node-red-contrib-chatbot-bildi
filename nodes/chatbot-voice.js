@@ -1,6 +1,6 @@
 const request = require('request').defaults({ encoding: null });
 const RegisterType = require('../lib/node-installer');
-const { ChatExpress } = require('bildi-chat-platform');
+const { ChatExpress } = require('chat-platform');
 const { 
   isValidMessage, 
   getChatId, 

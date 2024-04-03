@@ -3,7 +3,7 @@ const _ = require('underscore');
 const MessageTemplate = require('../lib/message-template-async');
 const fetchers = require('../lib/helpers/fetchers-obj');
 const validators = require('../lib/helpers/validators');
-const { ChatExpress } = require('bildi-chat-platform');
+const { ChatExpress } = require('chat-platform');
 const RegisterType = require('../lib/node-installer');
 const {
   enrichFilePayload,

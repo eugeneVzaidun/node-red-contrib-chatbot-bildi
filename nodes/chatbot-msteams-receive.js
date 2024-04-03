@@ -1,6 +1,6 @@
 const _ = require('underscore');
 const moment = require('moment');
-const { ContextProviders, ChatExpress } = require('bildi-chat-platform');
+const { ContextProviders, ChatExpress } = require('chat-platform');
 const clc = require('cli-color');
 const prettyjson = require('prettyjson');
 

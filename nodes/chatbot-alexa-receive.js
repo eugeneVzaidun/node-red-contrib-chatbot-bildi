@@ -1,7 +1,7 @@
 const _ = require('underscore');
 const moment = require('moment');
 const AlexaServer = require('../lib/platforms/alexa');
-const { ContextProviders, ChatExpress } = require('bildi-chat-platform');
+const { ContextProviders, ChatExpress } = require('chat-platform');
 const utils = require('../lib/helpers/utils');
 const clc = require('cli-color');
 const lcd = require('../lib/helpers/lcd');

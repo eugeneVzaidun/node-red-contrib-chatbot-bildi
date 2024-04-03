@@ -2,7 +2,7 @@ const assert = require('chai').assert;
 const RED = require('../lib/red-stub')();
 const ConversationBlock = require('../nodes/chatbot-conversation');
 const TelegramServer = require('../lib/platforms/telegram');
-const { ContextProviders } = require('bildi-chat-platform');
+const { ContextProviders } = require('chat-platform');
 const contextProviders = ContextProviders(RED);
 
 
