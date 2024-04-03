@@ -1,5 +1,5 @@
 const _ = require('underscore');
-const { ChatExpress: ChatPlatform } = require('chat-platform');
+const { ChatExpress: ChatPlatform } = require('bildi-chat-platform');
 const RegisterType = require('../lib/node-installer');
 const GlobalContextHelper = require('../lib/helpers/global-context-helper');
 

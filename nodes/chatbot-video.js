@@ -1,5 +1,5 @@
 const _ = require('underscore');
-const { ChatExpress } = require('chat-platform');
+const { ChatExpress } = require('bildi-chat-platform');
 
 const MessageTemplate = require('../lib/message-template-async');
 const validators = require('../lib/helpers/validators');

@@ -1,6 +1,6 @@
 const MessageTemplate = require('../lib/message-template-async');
 const RegisterType = require('../lib/node-installer');
-const { ChatExpress } = require('chat-platform'); 
+const { ChatExpress } = require('bildi-chat-platform'); 
 const { 
   isValidMessage, 
   getChatId, 
