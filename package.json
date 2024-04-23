@@ -33,7 +33,6 @@
     "nodes": {
       "chatbot-redbot": "./nodes/chatbot-redbot.js",
       "redbot-config": "./redbot.config.js",
-      "mc-base": "./nodes/mc-base.js",
       "chatbot-telegram-receive": "./nodes/chatbot-telegram-receive.js",
       "chatbot-message": "./nodes/chatbot-message.js",
       "chatbot-context": "./nodes/chatbot-context.js",
@@ -67,13 +66,7 @@
       "chatbot-support-table": "./nodes/chatbot-support-table.js",
       "chatbot-broadcast": "./nodes/chatbot-broadcast.js",
       "chatbot-pop-message": "./nodes/chatbot-pop-message.js",
-      "chatbot-push-message": "./nodes/chatbot-push-message.js",
-      "mc-simulator-receiver": "./nodes/mc-simulator-receiver.js",
-      "mc-simulator-sender": "./nodes/mc-simulator-sender.js",
-      "mc-input": "./nodes/mc-input.js",
-      "mc-output": "./nodes/mc-output.js",
-      "mc-configuration": "./nodes/mc-configuration.js",
-      "mc-queue": "./nodes/mc-queue.js"
+      "chatbot-push-message": "./nodes/chatbot-push-message.js"
     }
   },
   "maintainers": [
@@ -111,10 +104,6 @@
     "express-sessions": "^1.0.1",
     "extend": "^3.0.2",
     "geolib": "^3.3.1",
-    "graphql": "^15.0.0",
-    "graphql-relay": "^0.7.0",
-    "graphql-sequelize": "^9.3.6",
-    "graphql-subscriptions": "^1.1.0",
     "jszip": "^3.1.3",
     "lodash": "^4.17.15",
     "marked": "4.0.16",
