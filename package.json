@@ -1,28 +1,8 @@
 {
   "name": "node-red-contrib-chatbot-bildi",
-  "version": "1.1.21",
-  "description": "REDBot a Chat bot for a full featured chat bot for Telegram, Facebook Messenger and Slack. Almost no coding skills required",
+  "version": "1.1.22",
   "scripts": {
-    "start": "node-red",
-    "test": "jest",
-    "test-ci": "jest --watch",
-    "ngrok": "ngrok http 127.0.0.1:1880",
-    "localtunnel": "lt --port 1880",
-    "lint": "eslint ./nodes/*.js ./lib",
-    "build-docs": "node ./bin/import-from-notion",
-    "clean": "rm -rf ./wiki",
-    "version-old": "node ./bin/import-from-notion && git add *.html && git add *.md",
-    "start-webpack": "run-s pre-start dev-server",
-    "start:dev": "node bin/compose.js && docker-compose up -d",
-    "stop:dev": "docker-compose down",
-    "dev-server": "webpack-dev-server --open --config webpack/webpack.dev.js",
-    "pre-start": "node bin/import.js",
-    "plugin": "node bin/build.js",
-    "version": "node bin/update-version.js && git add latest-version.txt && git commit -m \"update version\"",
-    "build": "cross-env NODE_OPTIONS=--max_old_space_size=8192 webpack --config webpack/webpack.prod.js && node ./bin/import-from-notion && echo \"Build complete!\"",
-    "build-plugin": "webpack --config webpack/webpack.plugin.js",
-    "build-docker-assets": "docker build -f ./Dockerfile-webpack -t redbot-assets .",
-    "build-docker": "docker buildx build --platform linux/amd64,linux/arm64 -t guidone/redbot:latest . --push --no-cache  "
+    "start": "node-red"
   },
   "repository": {
     "type": "git",
@@ -70,9 +50,8 @@
   },
   "maintainers": [
     {
-      "name": "Guido Bellomo",
-      "email": "guido.bellomo@gmail.com",
-      "web": "http://javascript-jedi.com"
+      "name": "Eugene Zaidun",
+      "email": "vimoj2@gmail.com"
     }
   ],
   "keywords": [
