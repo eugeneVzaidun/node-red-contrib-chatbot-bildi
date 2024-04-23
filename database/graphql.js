@@ -8,16 +8,10 @@ const Sequelize = require('sequelize');
 const fetch = require('node-fetch');
 const fs = require('fs');
 const geohash = require('ngeohash');
-const { Directus } = require('@directus/sdk', {
-  auth: {
-    autoRefresh: false
-  }
-});
 
 const { when, hash } = require('../lib/utils');
 const translateWhere = require('../src/helpers/translate-where');
 
-const directus = new Directus('https://dashboard.red-bot.io');
 const Op = Sequelize.Op;
 const pubsub = new PubSub();
 
@@ -2026,21 +2020,6 @@ module.exports = ({
                 });
               }
             }
-
-            // create an anonymous install record
-            //await directus.auth.static('anonymous2');
-            await directus.auth.login({
-              email: 'anonymous@nowhere.com',
-              password: 'Anonymous42!',
-            });
-            await directus.items('orders').createOne({
-              status: 'free',
-              anonymous: true,
-              chatbotId,
-              plugin: pluginId,
-              amount: 0
-            });
-
             return installedPlugin;
           }
         },
