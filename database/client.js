@@ -1,5 +1,5 @@
 const { ApolloClient } = require("apollo-client");
-const { InMemoryCache } = require("apollo-cache-inmemory");
+// const { InMemoryCache } = require("apollo-cache-inmemory");
 const { createHttpLink } = require("apollo-link-http");
 const { ApolloLink, split } = require("apollo-link");
 const { getMainDefinition } = require("apollo-utilities");
@@ -7,7 +7,7 @@ const _ = require("lodash");
 const fetch = require("node-fetch").default;
 
 module.exports = (RED) => {
-  const cache = new InMemoryCache();
+  // const cache = new InMemoryCache();
   const host = !_.isEmpty(RED.settings.uiHost)
     ? RED.settings.uiHost
     : "localhost";
@@ -25,7 +25,7 @@ module.exports = (RED) => {
   }, apolloLink);
 
   return new ApolloClient({
-    cache,
+    // cache,
     link: ApolloLink.from([link]),
   });
 };
