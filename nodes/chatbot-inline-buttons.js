@@ -13,8 +13,6 @@ const {
 } = require('../lib/helpers/utils');
 const GlobalContextHelper = require('../lib/helpers/global-context-helper');
 
-require('../lib/platforms/telegram');
-require('../lib/platforms/facebook/facebook');
 
 module.exports = function(RED) {
   const registerType = RegisterType(RED);
