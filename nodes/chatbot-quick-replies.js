@@ -1,17 +1,17 @@
-const MessageTemplate = require('../lib/message-template-async');
-const emoji = require('node-emoji');
-const RegisterType = require('../lib/node-installer');
-const { ChatExpress } = require('chat-platform');
+const MessageTemplate = require("../lib/message-template-async");
+const emoji = require("node-emoji");
+const RegisterType = require("../lib/node-installer");
+const { ChatExpress } = require("chat-platform-bildi");
 const {
   isValidMessage,
   getChatId,
   getMessageId,
   getTransport,
-  extractValue
-} = require('../lib/helpers/utils');
-const GlobalContextHelper = require('../lib/helpers/global-context-helper');
+  extractValue,
+} = require("../lib/helpers/utils");
+const GlobalContextHelper = require("../lib/helpers/global-context-helper");
 
-module.exports = function(RED) {
+module.exports = function (RED) {
   const registerType = RegisterType(RED);
   const globalContextHelper = GlobalContextHelper(RED);
 
@@ -23,21 +23,31 @@ module.exports = function(RED) {
     this.message = config.message;
     this.trackMessage = config.trackMessage;
 
-    this.relay = function(msg) {
+    this.relay = function (msg) {
       // copy msg in the right position
-      const toSend = node.buttons.map(({ value }) => msg.payload?.content === value ? msg : null);
+      const toSend = node.buttons.map(({ value }) =>
+        msg.payload?.content === value ? msg : null
+      );
       // first pin is alway to sender
       toSend.unshift(null);
       node.send(toSend);
-    }
+    };
 
-    this.on('input', function(msg, send, done) {
+    this.on("input", function (msg, send, done) {
       // send/done compatibility for node-red < 1.0
-      send = send || function() { node.send.apply(node, arguments) };
-      done = done || function(error) { node.error.call(node, error, msg) };
+      send =
+        send ||
+        function () {
+          node.send.apply(node, arguments);
+        };
+      done =
+        done ||
+        function (error) {
+          node.error.call(node, error, msg);
+        };
       // check if valid message
       if (!isValidMessage(msg, node)) {
-        done('Invalid input message');
+        done("Invalid input message");
         return;
       }
       // get RedBot values
@@ -46,32 +56,34 @@ module.exports = function(RED) {
       const template = MessageTemplate(msg, node);
       const transport = getTransport(msg);
       // check transport compatibility
-      if (!ChatExpress.isSupported(transport, 'quick-replies')) {
+      if (!ChatExpress.isSupported(transport, "quick-replies")) {
         done(`Node "quick-replies" is not supported by ${transport} transport`);
         return;
       }
       // get values from config
       // prepare the message, first the config, then payload
-      const buttons = extractValue('buttons', 'buttons', node, msg);
-      const message = extractValue('string', 'message', node, msg);
+      const buttons = extractValue("buttons", "buttons", node, msg);
+      const message = extractValue("string", "message", node, msg);
 
-      template(message, buttons)
-        .then(([translatedMessage, translatedButtons]) => {
+      template(message, buttons).then(
+        ([translatedMessage, translatedButtons]) => {
           send({
             ...msg,
             payload: {
-              type: 'quick-replies',
-              content: message != null ? emoji.emojify(translatedMessage) : null,
+              type: "quick-replies",
+              content:
+                message != null ? emoji.emojify(translatedMessage) : null,
               chatId: chatId,
               messageId: messageId,
               buttons: translatedButtons,
-              trackNodeId: node.trackMessage ? node._path : undefined
-            }
+              trackNodeId: node.trackMessage ? node._path : undefined,
+            },
           });
           done();
-        });
+        }
+      );
     });
   }
 
-  registerType('chatbot-quick-replies', ChatBotQuickReplies);
+  registerType("chatbot-quick-replies", ChatBotQuickReplies);
 };

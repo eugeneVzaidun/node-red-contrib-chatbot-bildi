@@ -60,7 +60,7 @@
   "author": "Guido Bellomo <guido.bellomo@gmail.com>",
   "license": "ISC",
   "dependencies": {
-    "chat-platform": "2.1.4",
+    "chat-platform-bildi": "2.1.4",
     "cloudinary": "^1.27.1",
     "express": "^4.17.1",
     "express-fileupload": "^1.1.6",

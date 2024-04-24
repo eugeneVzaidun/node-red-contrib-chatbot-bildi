@@ -1,18 +1,17 @@
-const MessageTemplate = require('../lib/message-template-async');
-const emoji = require('node-emoji');
-const { ChatExpress } = require('chat-platform');
+const MessageTemplate = require("../lib/message-template-async");
+const emoji = require("node-emoji");
+const { ChatExpress } = require("chat-platform-bildi");
 
-const RegisterType = require('../lib/node-installer');
+const RegisterType = require("../lib/node-installer");
 const {
   isValidMessage,
   getChatId,
   getMessageId,
   extractValue,
   appendPayload,
-  getTransport
-} = require('../lib/helpers/utils');
-const GlobalContextHelper = require('../lib/helpers/global-context-helper');
-
+  getTransport,
+} = require("../lib/helpers/utils");
+const GlobalContextHelper = require("../lib/helpers/global-context-helper");
 
 module.exports = function(RED) {
   const registerType = RegisterType(RED);
@@ -29,16 +28,26 @@ module.exports = function(RED) {
 
     this.relay = function(msg) {
       // copy msg in the right position
-      const toSend = node.buttons.map(({ value }) => msg.payload?.content === value ? msg : null);
+      const toSend = node.buttons.map(({ value }) =>
+        msg.payload?.content === value ? msg : null
+      );
       // first pin is alway to sender
       toSend.unshift(null);
       node.send(toSend);
-    }
+    };
 
-    this.on('input', function(msg, send, done) {
+    this.on("input", function(msg, send, done) {
       // send/done compatibility for node-red < 1.0
-      send = send || function() { node.send.apply(node, arguments) };
-      done = done || function(error) { node.error.call(node, error, msg) };
+      send =
+        send ||
+        function() {
+          node.send.apply(node, arguments);
+        };
+      done =
+        done ||
+        function(error) {
+          node.error.call(node, error, msg);
+        };
       const sendPayload = appendPayload(send, msg);
       const transport = getTransport(msg);
 
@@ -47,7 +56,7 @@ module.exports = function(RED) {
         return;
       }
       // check transport compatibility
-      if (!ChatExpress.isSupported(transport, 'inline-buttons')) {
+      if (!ChatExpress.isSupported(transport, "inline-buttons")) {
         return;
       }
 
@@ -56,25 +65,24 @@ module.exports = function(RED) {
       const template = MessageTemplate(msg, node);
 
       // prepare buttons, first the config, then payload
-      const buttons = extractValue('buttons', 'buttons', node, msg);
-      const message = extractValue('string', 'message', node, msg);
-      const name = extractValue('string', 'name', node, msg);
+      const buttons = extractValue("buttons", "buttons", node, msg);
+      const message = extractValue("string", "message", node, msg);
+      const name = extractValue("string", "name", node, msg);
 
-      template(message, buttons)
-        .then(([message, buttons]) => {
-          sendPayload({
-            type: 'inline-buttons',
-            name,
-            content: message != null ? emoji.emojify(message) : null,
-            chatId,
-            messageId,
-            buttons,
-            trackNodeId: node.trackMessage ? node._path : undefined
-          });
-          done();
+      template(message, buttons).then(([message, buttons]) => {
+        sendPayload({
+          type: "inline-buttons",
+          name,
+          content: message != null ? emoji.emojify(message) : null,
+          chatId,
+          messageId,
+          buttons,
+          trackNodeId: node.trackMessage ? node._path : undefined,
         });
+        done();
+      });
     });
   }
 
-  registerType('chatbot-inline-buttons', ChatBotInlineButtons);
+  registerType("chatbot-inline-buttons", ChatBotInlineButtons);
 };
